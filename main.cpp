@@ -24,3 +24,24 @@ void insertRecursive(BSTNode*& root, int value){
 		insertRecursive(root->right, value);
 	}
 }
+
+void insertIterative(BSTNode*& root, int value){
+	if (!root){
+            root = new BSTNode(value);
+                return;
+        }
+
+	BSTNode* cur = root;
+	BSTNode* parent = nullptr;
+
+	while(cur){
+	     parent = cur;
+		if ( value < cur->data){
+			cur = cur->left;
+		} if ( value > cur->data){
+                        cur = cur->right;
+                } else {
+			return;
+		}
+	}
+}
