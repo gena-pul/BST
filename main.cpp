@@ -79,3 +79,12 @@ bool searchIterative(BTSNode* root, int key){
 	}
 	return false;
 }
+void inorderPrint(BSTNode* root){
+	if(!root){
+	   return;
+	}
+
+	inorderPrint(root->left);
+	cout << root->data << " ";
+	inorderPrint(root->right);
+}
