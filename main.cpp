@@ -72,7 +72,7 @@ void insertIterative(BSTNode*& root, int value){
 	     parent = cur;
 		if ( value < cur->data){
 			cur = cur->left;
-		} if ( value > cur->data){
+		} else if ( value > cur->data){
                         cur = cur->right;
                 } else {
 			return;
