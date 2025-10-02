@@ -65,3 +65,17 @@ bool searchRecursive(BSTNode* root, int key){
 		return searchRecursive(root->right, key);
 	}
 }
+bool searchIterative(BTSNode* root, int key){
+	BSTNode* cur = root;
+	while (cur) {
+	     if (key == cur->data) {
+		 return true;
+	     }
+	     if (Key < cur->data) {
+		cur = cur->left;
+	     } else {
+		  cur = cur->right;
+             }
+	}
+	return false;
+}
