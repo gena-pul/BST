@@ -13,6 +13,40 @@ struct BSTNode{
 	}
 };
 
+void insertRecursive(BSTNode*& root, int value);
+void insertIterative(BSTNode*& root, int value);
+bool searchRecursive(BSTNode* root, int key);
+bool searchIterative(BSTNode* root, int key);
+void inorderPrint(BSTNode* root);
+void freeTree(BSTNode* root);
+
+int main() {
+	BSTNode* root = nullptr;
+
+	insertRecursive(root, 8);
+	insertIterative(root, 3);
+	insertIterative(root, 10);
+	insertRecursive(root, 1);
+	insertRecursive(root, 6);
+	insertIterative(root, 14);
+	insertRecursive(root, 4);
+	insertIterative(root, 7);
+	insertRecursive(root, 13);
+
+	cout << "Inorder Traversal: ";
+	inorderPrint(root);
+	cout << "\n";
+
+	cout << "Search 7 (rec): " <<
+	     (searchRecursive(root, 7)? "Found" : "Not Found") << "\n";
+	cout << "Search 9 (it): " <<
+             (searchIterative(root, 9)? "Found" : "Not Found") << "\n";
+
+	freeTree(root);
+
+	return 0;
+
+}
 void insertRecursive(BSTNode*& root, int value){
 	if (!root){
 	    root = new BSTNode(value);
@@ -65,13 +99,13 @@ bool searchRecursive(BSTNode* root, int key){
 		return searchRecursive(root->right, key);
 	}
 }
-bool searchIterative(BTSNode* root, int key){
+bool searchIterative(BSTNode* root, int key){
 	BSTNode* cur = root;
 	while (cur) {
 	     if (key == cur->data) {
 		 return true;
 	     }
-	     if (Key < cur->data) {
+	     if (key < cur->data) {
 		cur = cur->left;
 	     } else {
 		  cur = cur->right;
