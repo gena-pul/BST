@@ -44,4 +44,10 @@ void insertIterative(BSTNode*& root, int value){
 			return;
 		}
 	}
+
+	if ( value < parent->data){
+		parent->left = new BSTNode(value);
+	} else {
+		parent->right = new BSTNode(value);
+	}
 }
