@@ -17,10 +17,11 @@ void insertRecursive(BSTNode*& root, int value);
 void insertIterative(BSTNode*& root, int value);
 bool searchRecursive(BSTNode* root, int key);
 bool searchIterative(BSTNode* root, int key);
-void inorderPrint(BSTNode* root);
-void freeTree(BSTNode* root);
 BSTNode* minValueNode(BSTNode* root);
 void deleteRecursive(BSTNode*& root, int key);
+void inorderPrint(BSTNode* root);
+void freeTree(BSTNode* root);
+
 
 int main() {
 	BSTNode* root = nullptr;
@@ -44,7 +45,21 @@ int main() {
 	cout << "Search 9 (it): " <<
              (searchIterative(root, 9)? "Found" : "Not Found") << "\n";
 
+	cout << "\n ---Performing deletions---\n";
+
+	cout << "Deleting 1 (leaf)...\n";
+	deleteRecursive(root, 1);
+	cout << "Deleting 14 (one child) ...\n";
+	deleteRecursive(root, 14);
+	cout << "Deleting 8 (two children / root)...\n";
+	deleteRecursive(root, 8);
+
+	cout << "\nInorder Traversal after deletions: ";
+	inorderPrint(root);
+	cout << "\n";
+
 	freeTree(root);
+	root = nullptr;
 
 	return 0;
 
@@ -115,24 +130,6 @@ bool searchIterative(BSTNode* root, int key){
 	}
 	return false;
 }
-void inorderPrint(BSTNode* root){
-	if(!root){
-	   return;
-	}
-
-	inorderPrint(root->left);
-	cout << root->data << " ";
-	inorderPrint(root->right);
-}
-void freeTree(BSTNode* root){
-	if (!root){
-	    return;
-	}
-
-	freeTree(root->left);
-	freeTree(root->right);
-	delete root;
-}
 BSTNode* minValueNode(BSTNode* root){
 	BSTNode* curr = root;
 	while(curr && curr->left){
@@ -163,4 +160,22 @@ void deleteRecursive(BSTNode*& root, int key){
 	             deleteRecursive(root->right, succ->data);
 		}
 	}
+}
+void inorderPrint(BSTNode* root){
+        if(!root){
+           return;
+        }
+
+        inorderPrint(root->left);
+        cout << root->data << " ";
+        inorderPrint(root->right);
+}
+void freeTree(BSTNode* root){
+        if (!root){
+            return;
+        }
+
+        freeTree(root->left);
+        freeTree(root->right);
+        delete root;
 }
